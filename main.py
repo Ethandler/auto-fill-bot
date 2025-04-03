@@ -15,14 +15,16 @@ row = data.iloc[0] #for now it only gets the first row
 fields = [row['Name'], row['Email'], row['Message']]
 
 #===This is the start delay===
-print(f"Move your mouse to the first field! Starting in {start_delay} seconds...")
+print(f"Move your mouse to the first field for Fill to fill the form! Starting in {start_delay} seconds...")
 time.sleep(start_delay)
 
 #===INPUT LOOP===
 for field in fields:
     pyperclip.copy(str(field)) #copy the field to the clipboard
+    time.sleep(delay_between_fields) #wait a bit before moving between fields
     pyautogui.hotkey('ctrl', 'v') #paste the field into the field
+    time.sleep(delay_between_fields) #wait a bit before moving between fields
     pyautogui.press('tab') #move to the next field
     time.sleep(delay_between_fields) #wait a bit before moving between fields
     
-    print("Form filled successfully!")
+    print("Fill filled the field!")
