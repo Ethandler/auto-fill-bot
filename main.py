@@ -10,11 +10,21 @@ csv_file = 'form_data.csv'
 
 #===This loads the data EB===
 data = pd.read_csv(csv_file)
-row = data.iloc[0] #for now it only gets the first row EB
+row = data.iloc[0] 
 
-fields = [row['Name'], row['Email'], row['Message']]
+fields = [row['Title'], 
+          row['Company Name'], 
+          row['Company State Location'], 
+          row['First Name'], 
+          row['Last name'], 
+          row['Phone Number'], 
+          row['Street Address'],  
+          row['Street Address Line 2'], 
+          row['City'], 
+          row['State / Province'], 
+          row['Postal / Zip Code']] 
 
-#===This is the start delay EB===
+
 print(f"Move your mouse to the first field for Fill to fill the form! Starting in {start_delay} seconds...")
 time.sleep(start_delay)
 
