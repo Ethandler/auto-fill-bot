@@ -4,8 +4,8 @@ import pandas as pd
 import time
 
 #===This is my settings EB===
-delay_between_fields = 1
-start_delay = 5
+delay_between_fields = 0.35
+start_delay = 4.5
 csv_file = 'form_data.csv'
 
 #===This loads the data EB===
@@ -21,9 +21,7 @@ time.sleep(start_delay)
 #===INPUT LOOP EB===
 for field in fields:
     pyperclip.copy(str(field)) #copy the field to the clipboard EB
-    time.sleep(delay_between_fields) #wait a bit before moving between fields EB
     pyautogui.hotkey('ctrl', 'v') #paste the field into the field EB
-    time.sleep(delay_between_fields) #wait a bit before moving between fields EB
     pyautogui.press('tab') #move to the next field EB
     time.sleep(delay_between_fields) #wait a bit before moving between fields EB
     
