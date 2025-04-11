@@ -59,7 +59,7 @@ def paste_field(text):
 
 def click_dropdown_by_image(image_path, option_map, option_name, label="Dropdown"):
     try:
-        location = pyautogui.locateCenterOnScreen("Screenshot 2025-04-11 110229.png", confidence=0.8)
+        location = pyautogui.locateCenterOnScreen("D:\Projects\auto-fill-bot\dropdown_service.png.png", confidence=0.8)
         if location is None:
             raise Exception(f"Image not found: {image_path}")
 
@@ -108,6 +108,7 @@ paste_field(row['City'])
 click_dropdown_by_image(STATE_DROPDOWN_IMG, state_dropdown, row['State / Province'], label="State")
 paste_field(row['Postal / Zip Code'])
 paste_field(row['Phone Number'])
+
 
 click_dropdown_by_image(SERVICE_DROPDOWN_IMG, service_dropdown, row['Service Type'], label="Service Type")
 check_contact_method(row['Contact Via'])
