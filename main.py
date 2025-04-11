@@ -32,8 +32,9 @@ contact_checkbox_tab_counts = {
     "Text": 2
 }
 
-STATE_DROPDOWN_COORDS = (404, 462)
-SERVICE_DROPDOWN_COORDS = (232, 581)
+# === Image File Names ===
+STATE_DROPDOWN_IMG = 'dropdown_state.png'
+SERVICE_DROPDOWN_IMG = 'dropdown_service.png'
 
 # === Load Data ===
 if not os.path.exists(csv_file):
@@ -56,16 +57,31 @@ def paste_field(text):
     except Exception as e:
         print(f"⚠️ Clipboard Error: {e}")
 
-def click_dropdown_and_select(x, y, option_map, option_name):
-    pyautogui.click(x, y)
-    time.sleep(0.2)
-    presses = option_map.get(option_name, 0)
-    for _ in range(presses):
-        pyautogui.press('down')
-        time.sleep(0.1)
-    pyautogui.press('enter')
-    time.sleep(delay_between_fields)
-    pyautogui.press('tab')
+def click_dropdown_by_image(image_path, option_map, option_name, label="Dropdown"):
+    try:
+        location = pyautogui.locateCenterOnScreen("Screenshot 2025-04-11 110229.png", confidence=0.8)
+        if location is None:
+            raise Exception(f"Image not found: {image_path}")
+
+        pyautogui.click(location)
+        time.sleep(0.2)
+
+        presses = option_map.get(option_name.strip(), None)
+        if presses is None:
+            raise ValueError(f"Unknown option '{option_name}' in {label}")
+
+        for _ in range(presses):
+            pyautogui.press('down')
+            time.sleep(0.1)
+
+        pyautogui.press('enter')
+        time.sleep(delay_between_fields)
+        pyautogui.press('tab')
+
+    except Exception as e:
+        print(f"⚠️ Dropdown failure in {label}: {e}")
+        pyautogui.press('tab')
+
 
 def check_contact_method(methods):
     for method in str(methods).split(','):
@@ -89,11 +105,11 @@ paste_field(row['Street Address'])
 paste_field(row.get('Street Address Line 2', ''))  # Optional
 paste_field(row['City'])
 
-click_dropdown_and_select(*STATE_DROPDOWN_COORDS, state_dropdown, row['State / Province'])
+click_dropdown_by_image(STATE_DROPDOWN_IMG, state_dropdown, row['State / Province'], label="State")
 paste_field(row['Postal / Zip Code'])
 paste_field(row['Phone Number'])
 
-click_dropdown_and_select(*SERVICE_DROPDOWN_COORDS, service_dropdown, row['Service Type'])
+click_dropdown_by_image(SERVICE_DROPDOWN_IMG, service_dropdown, row['Service Type'], label="Service Type")
 check_contact_method(row['Contact Via'])
 
 paste_field(row['Type a Question'])
