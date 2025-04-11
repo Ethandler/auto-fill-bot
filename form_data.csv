@@ -1,3 +1,2 @@
-First Name,Last Name,Email,Street Address,Street Address Line 2,City,State / Province,Postal / Zip Code,Area Code,Phone number,Type a Question
-John,Doe,john.doe@example.com,123 Main St,Suite 100,Anytown,CA,12345,555,123-4567,How do I Save Time?
- 
+First Name,Last Name,Email,Street Address,Street Address Line 2,City,State / Province,Postal / Zip Code,Phone Number,Service Type,Contact Via,Type a Question
+John,Doe,john.doe@example.com,123 Main St,Suite 100,AnyTown,California,90210,555-123-4567,Repair,Email,How fast can this get done?

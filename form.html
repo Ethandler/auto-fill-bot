@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Service Request Form</title>
+</head>
+<body>
+    <h1>Service Request Form</h1>
+    <form>
+        <h2>Personal Information</h2>
+        <div>
+            <label><b>Name*</b></label>
+            <input type="text" required>
+            <input type="text" required>
+        </div>
+        <div>
+            <label><b>Email*</b></label>
+            <input type="email" required>
+        </div>
+
+        <h2>Contact Information</h2>
+        <div>
+            <label><b>Address*</b></label>
+            <input type="text" required>
+        </div>
+        <div>
+            <label><b>City*</b></label>
+            <input type="text" required>
+            <label><b>State*</b></label>
+            <select required>
+                <option>Select State</option>
+            </select>
+            <label><b>ZIP*</b></label>
+            <input type="text" pattern="[0-9]{5}" required>
+        </div>
+        <div>
+            <label><b>Phone*</b></label>
+            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+        </div>
+
+        <h2>Service Details</h2>
+        <div>
+            <label><b>Service Type*</b></label>
+            <select required>
+                <option>Select Service</option>
+            </select>
+        </div>
+        <div>
+            <label><b>Contact Via*</b></label>
+            <input type="checkbox"> Email
+            <input type="checkbox"> Phone
+            <input type="checkbox"> Text
+        </div>
+        <div>
+            <label><b>Description*</b></label>
+            <textarea required></textarea>
+        </div>
+
+        <div style="background-color: #e6f3ff; padding: 10px; margin: 10px 0;">
+            By submitting, you agree to our terms and privacy policy.
+        </div>
+
+        <button type="submit">SUBMIT REQUEST</button>
+    </form>
+</body>
+</html>
