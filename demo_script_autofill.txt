@@ -1,0 +1,24 @@
+
+🎥 Demo Script: Auto-Fill Bot (Client Work Order Form)
+
+[INTRO]
+Hi! This is a quick demo of my Auto-Fill Bot in action, designed to automatically complete client service forms with one click.
+
+[STEP 1 - OPEN FORM]
+I have a sample "Client Work Order" form open in the browser. It's used to intake client information like service type, priority, and contact preferences.
+
+[STEP 2 - OPEN SCRIPT]
+Next, I’ll run the Python script. It pulls data from a CSV file and uses PyAutoGUI to simulate human typing and navigation.
+
+[STEP 3 - START SCRIPT]
+Once the script starts, I hover my mouse over the first field and let it go. The bot automatically:
+- Fills in full name, company, email, and phone number
+- Selects the appropriate service and priority from dropdowns
+- Checks the correct contact method (email, phone, or text)
+- Pastes a project description
+
+[STEP 4 - DONE]
+Once all fields are complete, it prints a confirmation in the console. I can now click submit.
+
+[OUTRO]
+This tool is perfect for automating repetitive data entry. Use it for lead gen, job boards, or any browser-based form. 

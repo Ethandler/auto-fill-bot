@@ -1,2 +1,2 @@
-First Name,Last Name,Email,Street Address,Street Address Line 2,City,State / Province,Postal / Zip Code,Phone Number,Service Type,Contact Via,Type a Question
-John,Doe,john.doe@example.com,123 Main St,Suite 100,AnyTown,California,90210,555-123-4567,Repair,Email,How fast can this get done?
+Full Name,Business / Company Name,Email,Phone,Type of Work Needed,Priority Level,Preferred Contact Methods,Work Description
+John Doe,Doe Tech Solutions,john.doe@example.com,555-123-4567,Software Installation,High (24 hours),Email,How fast can this get done?

@@ -1,3 +1,4 @@
+
 import pyautogui
 import pyperclip
 import pandas as pd
@@ -10,20 +11,19 @@ start_delay = 6.0
 csv_file = 'form_data.csv'
 
 # === Dropdown Option Maps ===
-state_dropdown = {
-    "Select State": 0,
-    "Arizona": 1,
-    "California": 2,
-    "Texas": 3,
-    "New York": 4
+work_type_dropdown = {
+    "Select Service": 0,
+    "IT Support": 1,
+    "Website Development": 2,
+    "Software Installation": 3,
+    "Consultation": 4
 }
 
-service_dropdown = {
-    "Select Service": 0,
-    "Consultation": 1,
-    "Repair": 2,
-    "Installation": 3,
-    "Other": 4
+priority_dropdown = {
+    "Select Priority": 0,
+    "Low (1–2 weeks)": 1,
+    "Medium (2–3 days)": 2,
+    "High (24 hours)": 3
 }
 
 contact_checkbox_tab_counts = {
@@ -32,9 +32,9 @@ contact_checkbox_tab_counts = {
     "Text": 2
 }
 
-# === Image File Names ===
-STATE_DROPDOWN_IMG = 'dropdown_state.png'
-SERVICE_DROPDOWN_IMG = 'dropdown_service.png'
+# === Image File Names (Full absolute paths) ===
+WORK_TYPE_DROPDOWN_IMG = r'D:\Projects\auto-fill-bot\selectservice.png'
+PRIORITY_DROPDOWN_IMG = r'D:\Projects\auto-fill-bot\selectpriority.png'
 
 # === Load Data ===
 if not os.path.exists(csv_file):
@@ -59,7 +59,7 @@ def paste_field(text):
 
 def click_dropdown_by_image(image_path, option_map, option_name, label="Dropdown"):
     try:
-        location = pyautogui.locateCenterOnScreen("D:\Projects\auto-fill-bot\dropdown_service.png.png", confidence=0.8)
+        location = pyautogui.locateCenterOnScreen(image_path, confidence=0.8)
         if location is None:
             raise Exception(f"Image not found: {image_path}")
 
@@ -82,7 +82,6 @@ def click_dropdown_by_image(image_path, option_map, option_name, label="Dropdown
         print(f"⚠️ Dropdown failure in {label}: {e}")
         pyautogui.press('tab')
 
-
 def check_contact_method(methods):
     for method in str(methods).split(','):
         method = method.strip()
@@ -98,21 +97,15 @@ def check_contact_method(methods):
 print(f"🕹️ Move mouse to the first form field. Starting in {start_delay} seconds...")
 time.sleep(start_delay)
 
-paste_field(row['First Name'])
-paste_field(row['Last Name'])
+paste_field(row['Full Name'])
+paste_field(row.get('Business / Company Name', ''))  # Optional
 paste_field(row['Email'])
-paste_field(row['Street Address'])
-paste_field(row.get('Street Address Line 2', ''))  # Optional
-paste_field(row['City'])
+paste_field(row['Phone'])
 
-click_dropdown_by_image(STATE_DROPDOWN_IMG, state_dropdown, row['State / Province'], label="State")
-paste_field(row['Postal / Zip Code'])
-paste_field(row['Phone Number'])
+click_dropdown_by_image(WORK_TYPE_DROPDOWN_IMG, work_type_dropdown, row['Type of Work Needed'], label="Work Type")
+click_dropdown_by_image(PRIORITY_DROPDOWN_IMG, priority_dropdown, row['Priority Level'], label="Priority Level")
 
-
-click_dropdown_by_image(SERVICE_DROPDOWN_IMG, service_dropdown, row['Service Type'], label="Service Type")
-check_contact_method(row['Contact Via'])
-
-paste_field(row['Type a Question'])
+check_contact_method(row['Preferred Contact Methods'])
+paste_field(row['Work Description'])
 
 print("✅ All fields filled by FillBot!")
